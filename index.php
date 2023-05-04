@@ -72,7 +72,8 @@
                 <?php foreach($hotels as $hotel){ ?>   
                     <?php if(($hotel['parking'] == ($parcheggio === "true") || ($parcheggio == "false")) && ($hotel['vote'] >= $voto )){ ?>   
 
-                        <tr>
+                        <tr> 
+                            <td><?php echo $hotel['name']; ?></td>
                             <td><?php echo $hotel['description']; ?></td>
                             <td>
                                 <?php 

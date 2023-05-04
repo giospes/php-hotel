@@ -48,7 +48,7 @@
         ],
 
     ];
-    if(!empty($_POST['parcheggio']) && !empty($_POST['voto'])) {
+    if(isset($_POST['parcheggio']) && isset($_POST['voto'])) {
         $parcheggio = $_POST["parcheggio"];
         $voto = $_POST["voto"];
     }
@@ -59,7 +59,7 @@
 
     <main class="vh-100 d-flex align-items-center justify-content-center">
     
-        <?php if (isset($parcheggio)) {?> 
+        <?php if (isset($parcheggio) && isset($voto)) {?> 
 
             <table class="w-75 text-center">
                 <tr>
@@ -70,11 +70,12 @@
                     <th>Distance to center</th>
                 </tr>
                 <?php foreach($hotels as $hotel){ ?>   
-                    <?php if(($hotel['parking'] == $parcheggio) && ($hotel['vote'] >= $voto )){ ?>   
+                    <?php if(($hotel['parking'] == ($parcheggio === "true") || ($parcheggio == "false")) && ($hotel['vote'] >= $voto )){ ?>   
+
                         <tr>
-                            <td><?php echo $hotel['name']; ?></td>
                             <td><?php echo $hotel['description']; ?></td>
-                            <td><?php 
+                            <td>
+                                <?php 
                                     if($hotel['parking']){
                                     echo 'Si' ;
                                     } else echo 'No';
@@ -93,16 +94,15 @@
             <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
                 <label for="parcheggio">Hai bisogno di un parcheggio?</label>
                 <select id="parcheggio" name="parcheggio">
-                    <option value="">Choose an option</option>
-                    <option value="si">Si</option>
-                    <option value="no">No</option>
+                    <option value="false">No</option>
+                    <option value="true">Si</option>
+
                 </select>
                 
                 <br>
 
                 <label for="voto">Inserisci il voto minimo</label>
                 <select id="voto" name="voto">
-                    <option value="">Choose an option</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>

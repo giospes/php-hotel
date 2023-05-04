@@ -53,21 +53,31 @@
     ?>  
     
 
-    <main>
-        <?php
-            foreach($hotels as $hotel){
-        ?>
-            <ul>
-                <li><h2><?php echo $hotel['name']; ?></h2></li>
-                <li><?php echo $hotel['description']; ?></li>
-                <li><?php echo $hotel['parking']; ?></li>
-                <li><?php echo $hotel['vote']; ?></li>
-                <li><?php echo $hotel['distance_to_center']; ?></li>
+    <main class="vh-100 d-flex align-items-center justify-content-center">
+        <table class="w-75 text-center">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Parking</th>
+                <th>Vote</th>
+                <th>Distance to center</th>
+            </tr>
+            <?php
+                foreach($hotels as $hotel){
+            ?>
+                <tr>
+                    <td><?php echo $hotel['name']; ?></td>
+                    <td><?php echo $hotel['description']; ?></td>
+                    <td><?php echo $hotel['parking']; ?></td>
+                    <td><?php echo $hotel['vote']; ?></td>
+                    <td><?php echo $hotel['distance_to_center']; ?></td>
 
-            </ul>
-        <?php
-            }
-        ?>
+                </tr>
+
+            <?php
+                }
+            ?>
+        </table>
     </main>
 </body>
 </html>
